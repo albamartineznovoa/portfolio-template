@@ -1,424 +1,925 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grade 2 Demo: Bootstrap + GSAP Scroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio · Tu Nombre</title>
+    <meta
+      name="description"
+      content="Portfolio web con Bootstrap + GSAP: proyectos, habilidades y contacto."
+    />
+    <meta name="theme-color" content="#ffffff" />
 
-    <!-- Bootstrap CSS -->
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Custom Styles -->
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/otros.css" />
 
-    <!-- Custom Scripts -->
+    <!-- JS (defer) -->
     <script src="./assets/js/main.js" defer></script>
   </head>
 
-  <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <body
+    data-bs-spy="scroll"
+    data-bs-target="#navbar"
+    data-bs-offset="90"
+    tabindex="-1"
+  >
+    <!-- Skip link (accesibilidad) -->
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <!-- NAV -->
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Portfolio</a>
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="#hero"
+          aria-label="Inicio"
+        >
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="fw-semibold">TuNombre</span>
+        </a>
+
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-bs-target="#nav"
+          aria-controls="nav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label="Abrir menú"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="#about">Sobre mí</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
+              <a class="nav-link" href="#projects">Proyectos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contacto</a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-sm btn-soft" href="#projects">Ver trabajos</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <main>
-      <!-- Hero Section -->
-      <section
+    <main id="main">
+      <!-- HERO -->
+      <header
         id="hero"
-        class="hero min-vh-100 d-flex align-items-center position-relative overflow-hidden"
+        class="hero section-pad position-relative overflow-hidden"
       >
-        <!-- Parallax Background -->
-        <div class="hero-bg position-absolute w-100 h-100"></div>
-
-        <!-- Floating shapes (GSAP animated) -->
-        <div class="floating-shapes">
-          <div class="shape shape-1"></div>
-          <div class="shape shape-2"></div>
-          <div class="shape shape-3"></div>
+        <div class="hero-bg-glow" aria-hidden="true">
+          <span class="glow g1"></span>
+          <span class="glow g2"></span>
+          <span class="glow g3"></span>
         </div>
 
-        <div class="container position-relative z-1 text-center text-white">
-          <h1 class="display-1 fw-bold hero-title">John Designer</h1>
-          <p class="lead hero-subtitle mb-4">
-            Full-Stack Developer & Creative Technologist
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary btn-lg me-3"
-              >View Projects</a
-            >
-            <a href="#contact" class="btn btn-outline-light btn-lg"
-              >Get in Touch</a
-            >
+        <div class="container position-relative">
+          <div class="row align-items-center gy-5">
+            <div class="col-lg-7">
+              <p class="kicker gsap-reveal">Diseño · Motion · Front-end</p>
+              <h1 class="display-4 fw-semibold lh-sm hero-title gsap-reveal">
+                Portfolio minimal y vivo:
+                <span class="text-gradient">interacción + detalle</span>
+              </h1>
+              <p class="lead text-muted mt-3 hero-subtitle gsap-reveal">
+                Soy <strong>Tu Nombre</strong>. Construyo experiencias limpias,
+                responsivas y con animación con propósito (no por “hacer
+                bonito”).
+              </p>
+
+              <div class="d-flex flex-wrap gap-2 mt-4 hero-cta gsap-reveal">
+                <a class="btn btn-primary btn-lg" href="#projects"
+                  >Explorar proyectos</a
+                >
+                <a class="btn btn-outline-soft btn-lg" href="#contact"
+                  >Hablemos</a
+                >
+              </div>
+
+              <div class="mt-4 d-flex flex-wrap gap-2 gsap-reveal">
+                <span class="pill">Bootstrap 5</span>
+                <span class="pill">GSAP + ScrollTrigger</span>
+                <span class="pill">Responsive</span>
+                <span class="pill">Accesible</span>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <!-- Tarjeta “preview” interactiva -->
+              <aside class="hero-card gsap-reveal" aria-label="Resumen rápido">
+                <div class="hero-card-top">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="avatar" aria-hidden="true">TN</span>
+                      <div>
+                        <p class="mb-0 fw-semibold">Tu Nombre</p>
+                        <p class="mb-0 small text-muted">
+                          Diseñadora Multimedia
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      id="themePulse"
+                      class="btn btn-icon"
+                      type="button"
+                      aria-label="Animar tarjeta"
+                    >
+                      ✦
+                    </button>
+                  </div>
+                </div>
+
+                <div class="hero-card-body">
+                  <p class="mb-3 text-muted">
+                    Tres proyectos. Misma estructura base. Presentación distinta
+                    en cada uno.
+                  </p>
+
+                  <div class="mini-stats">
+                    <div class="mini-stat">
+                      <p class="mini-label">Proyectos</p>
+                      <p class="mini-value"><span data-counter="3">3</span></p>
+                    </div>
+                    <div class="mini-stat">
+                      <p class="mini-label">Áreas</p>
+                      <p class="mini-value"><span data-counter="4">4</span></p>
+                    </div>
+                    <div class="mini-stat">
+                      <p class="mini-label">Focus</p>
+                      <p class="mini-value">UX</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-3">
+                    <div class="soft-divider"></div>
+                    <p class="small text-muted mb-0">
+                      Tip: desplázate y fíjate en los reveals, barras y
+                      galerías.
+                    </p>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- Indicador scroll -->
+          <div class="scroll-indicator" aria-hidden="true">
+            <span class="mouse"></span>
           </div>
         </div>
+      </header>
 
-        <!-- Scroll indicator -->
-        <div
-          class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4"
-        >
-          <div class="mouse"></div>
+      <!-- ABOUT -->
+      <section id="about" class="section-pad">
+        <div class="container">
+          <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+              <div class="about-card gsap-reveal">
+                <img
+                  class="img-fluid rounded-4"
+                  src="https://picsum.photos/900/700?random=17"
+                  alt="Foto o imagen representativa"
+                  loading="lazy"
+                />
+                <div class="about-badge" aria-hidden="true">Disponible</div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <h2 class="section-title gsap-reveal">Sobre mí</h2>
+              <p class="text-muted gsap-reveal">
+                Aquí pones tu bio: enfoque, valores, herramientas y lo que te
+                diferencia.
+              </p>
+
+              <div class="row g-3 mt-3">
+                <div class="col-md-6 gsap-reveal">
+                  <div class="info-card">
+                    <p class="info-title">Lo que hago</p>
+                    <p class="info-text">
+                      Interfaces claras, sistemas visuales y motion sutil.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 gsap-reveal">
+                  <div class="info-card">
+                    <p class="info-title">Cómo trabajo</p>
+                    <p class="info-text">
+                      Componentes + iteración + accesibilidad.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 gsap-reveal">
+                <a class="btn btn-soft" href="#contact">Contactar</a>
+                <a class="btn btn-link ms-2" href="#projects"
+                  >Ver proyectos →</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- About Section -->
-      <section id="about" class="py-5 py-lg-6 bg-dark">
+      <!-- PROJECTS -->
+      <section id="projects" class="section-pad pt-0">
         <div class="container">
-          <div class="row align-items-center g-5">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"
+          >
+            <div>
+              <h2 class="section-title gsap-reveal">Proyectos</h2>
+              <p class="text-muted gsap-reveal mb-0">
+                Misma estructura base en los 3, pero cada uno con un “twist”
+                interactivo.
+              </p>
+            </div>
+
+            <div class="gsap-reveal d-flex gap-2">
+              <button
+                class="btn btn-soft btn-sm"
+                type="button"
+                data-filter="all"
+              >
+                Todos
+              </button>
+              <button
+                class="btn btn-soft btn-sm"
+                type="button"
+                data-filter="web"
+              >
+                Web
+              </button>
+              <button
+                class="btn btn-soft btn-sm"
+                type="button"
+                data-filter="branding"
+              >
+                Branding
+              </button>
+              <button
+                class="btn btn-soft btn-sm"
+                type="button"
+                data-filter="motion"
+              >
+                Motion
+              </button>
+            </div>
+          </div>
+
+          <!-- PROYECTO 1 (Carrusel) -->
+          <article class="project project--carousel gsap-reveal" data-cat="web">
+            <div class="project-head">
+              <div>
+                <p class="project-kicker">Proyecto 01 · Web</p>
+                <h3 class="project-title">Portfolio interactivo (carousel)</h3>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Bootstrap</span>
+                <span class="tag">GSAP</span>
+                <span class="tag">UI</span>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-media">
+                <div
+                  id="p1Carousel"
+                  class="carousel slide rounded-4 overflow-hidden"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    <button
+                      type="button"
+                      data-bs-target="#p1Carousel"
+                      data-bs-slide-to="0"
+                      class="active"
+                      aria-label="Slide 1"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#p1Carousel"
+                      data-bs-slide-to="1"
+                      aria-label="Slide 2"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#p1Carousel"
+                      data-bs-slide-to="2"
+                      aria-label="Slide 3"
+                    ></button>
+                  </div>
+
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="https://picsum.photos/1200/800?random=101"
+                        class="d-block w-100"
+                        alt="Imagen proyecto 1 - 1"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="https://picsum.photos/1200/800?random=102"
+                        class="d-block w-100"
+                        alt="Imagen proyecto 1 - 2"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="https://picsum.photos/1200/800?random=103"
+                        class="d-block w-100"
+                        alt="Imagen proyecto 1 - 3"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#p1Carousel"
+                    data-bs-slide="prev"
+                    aria-label="Anterior"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#p1Carousel"
+                    data-bs-slide="next"
+                    aria-label="Siguiente"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="project-content">
+                <p class="text-muted">
+                  Describe el objetivo, el reto y el resultado (mini
+                  storytelling).
+                </p>
+
+                <ul class="project-list">
+                  <li><strong>Rol:</strong> UI + Front</li>
+                  <li><strong>Objetivo:</strong> navegación fluida y clara</li>
+                  <li>
+                    <strong>Detalle:</strong> carousel + reveals on scroll
+                  </li>
+                </ul>
+
+                <div class="project-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Ver demo</a
+                  >
+                  <a
+                    class="btn btn-outline-soft"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Código</a
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROYECTO 2 (Tabs + Barras animadas) -->
+          <article
+            class="project project--tabs gsap-reveal"
+            data-cat="branding"
+          >
+            <div class="project-head">
+              <div>
+                <p class="project-kicker">Proyecto 02 · Branding</p>
+                <h3 class="project-title">Sistema visual (tabs + barras)</h3>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Identidad</span>
+                <span class="tag">Layout</span>
+                <span class="tag">Motion</span>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-media">
+                <div class="tab-card rounded-4">
+                  <ul class="nav nav-pills tab-nav" id="p2Tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="p2-a-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#p2-a"
+                        type="button"
+                        role="tab"
+                        aria-controls="p2-a"
+                        aria-selected="true"
+                      >
+                        Concepto
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="p2-b-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#p2-b"
+                        type="button"
+                        role="tab"
+                        aria-controls="p2-b"
+                        aria-selected="false"
+                      >
+                        Paleta
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="p2-c-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#p2-c"
+                        type="button"
+                        role="tab"
+                        aria-controls="p2-c"
+                        aria-selected="false"
+                      >
+                        Tipografía
+                      </button>
+                    </li>
+                  </ul>
+
+                  <div class="tab-content p-3 p-md-4" id="p2TabsContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="p2-a"
+                      role="tabpanel"
+                      aria-labelledby="p2-a-tab"
+                      tabindex="0"
+                    >
+                      <p class="mb-2 fw-medium">Dirección creativa</p>
+                      <p class="text-muted mb-0">
+                        Explica el concepto del proyecto en 2–3 líneas (claro y
+                        concreto).
+                      </p>
+                      <div class="mt-3">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="https://picsum.photos/1200/800?random=201"
+                          alt="Moodboard"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      class="tab-pane fade"
+                      id="p2-b"
+                      role="tabpanel"
+                      aria-labelledby="p2-b-tab"
+                      tabindex="0"
+                    >
+                      <p class="mb-3 text-muted">
+                        Barras “soft” (se animan al hacer scroll).
+                      </p>
+                      <div class="soft-bars">
+                        <div class="soft-bar">
+                          <div class="soft-bar-top">
+                            <span class="fw-medium">Color primario</span>
+                            <span class="text-muted">92%</span>
+                          </div>
+                          <div class="soft-track">
+                            <div class="soft-fill" data-width="92"></div>
+                          </div>
+                        </div>
+                        <div class="soft-bar">
+                          <div class="soft-bar-top">
+                            <span class="fw-medium">Color secundario</span>
+                            <span class="text-muted">78%</span>
+                          </div>
+                          <div class="soft-track">
+                            <div class="soft-fill" data-width="78"></div>
+                          </div>
+                        </div>
+                        <div class="soft-bar">
+                          <div class="soft-bar-top">
+                            <span class="fw-medium">Neutros</span>
+                            <span class="text-muted">88%</span>
+                          </div>
+                          <div class="soft-track">
+                            <div class="soft-fill" data-width="88"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="tab-pane fade"
+                      id="p2-c"
+                      role="tabpanel"
+                      aria-labelledby="p2-c-tab"
+                      tabindex="0"
+                    >
+                      <p class="mb-2 fw-medium">Jerarquía tipográfica</p>
+                      <p class="text-muted mb-3">
+                        Ejemplo de escalas (y pesos Poppins) para
+                        titular/lead/body.
+                      </p>
+                      <div class="type-sample">
+                        <p class="ts-h">Titular · Semibold</p>
+                        <p class="ts-l">Lead · Regular</p>
+                        <p class="ts-b">
+                          Body · Light. Breve texto demostrativo con
+                          legibilidad.
+                        </p>
+                      </div>
+                      <div class="mt-3">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="https://picsum.photos/1200/800?random=202"
+                          alt="Aplicación tipográfica"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-content">
+                <p class="text-muted">
+                  Aquí describes el sistema: decisiones, consistencia, y
+                  aplicación.
+                </p>
+
+                <ul class="project-list">
+                  <li><strong>Rol:</strong> Branding + Layout</li>
+                  <li>
+                    <strong>Detalle:</strong> tabs interactivos + barras GSAP
+                  </li>
+                  <li>
+                    <strong>Resultado:</strong> sistema coherente y usable
+                  </li>
+                </ul>
+
+                <div class="project-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Ver caso</a
+                  >
+                  <a
+                    class="btn btn-outline-soft"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Behance</a
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROYECTO 3 (Grid + Lightbox modal) -->
+          <article class="project project--grid gsap-reveal" data-cat="motion">
+            <div class="project-head">
+              <div>
+                <p class="project-kicker">Proyecto 03 · Motion</p>
+                <h3 class="project-title">Piezas y frames (grid + lightbox)</h3>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Motion</span>
+                <span class="tag">Edición</span>
+                <span class="tag">Story</span>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-media">
+                <div class="grid-gallery">
+                  <button
+                    class="grid-item"
+                    type="button"
+                    data-lightbox="https://picsum.photos/1400/900?random=301"
+                    aria-label="Abrir imagen 1"
+                  >
+                    <img
+                      src="https://picsum.photos/800/600?random=301"
+                      alt="Frame 1"
+                      loading="lazy"
+                    />
+                  </button>
+                  <button
+                    class="grid-item"
+                    type="button"
+                    data-lightbox="https://picsum.photos/1400/900?random=302"
+                    aria-label="Abrir imagen 2"
+                  >
+                    <img
+                      src="https://picsum.photos/800/600?random=302"
+                      alt="Frame 2"
+                      loading="lazy"
+                    />
+                  </button>
+                  <button
+                    class="grid-item tall"
+                    type="button"
+                    data-lightbox="https://picsum.photos/1400/900?random=303"
+                    aria-label="Abrir imagen 3"
+                  >
+                    <img
+                      src="https://picsum.photos/800/900?random=303"
+                      alt="Frame 3"
+                      loading="lazy"
+                    />
+                  </button>
+                  <button
+                    class="grid-item"
+                    type="button"
+                    data-lightbox="https://picsum.photos/1400/900?random=304"
+                    aria-label="Abrir imagen 4"
+                  >
+                    <img
+                      src="https://picsum.photos/800/600?random=304"
+                      alt="Frame 4"
+                      loading="lazy"
+                    />
+                  </button>
+                </div>
+                <p class="small text-muted mt-2 mb-0">
+                  Tip: toca cualquier imagen para ampliarla (modal).
+                </p>
+              </div>
+
+              <div class="project-content">
+                <p class="text-muted">
+                  Explica la intención del motion, ritmo, recursos y output
+                  final.
+                </p>
+
+                <ul class="project-list">
+                  <li><strong>Rol:</strong> Motion + Diseño</li>
+                  <li>
+                    <strong>Detalle:</strong> grid intrínseca + lightbox
+                    accesible
+                  </li>
+                  <li><strong>Plus:</strong> hover microinteractions</li>
+                </ul>
+
+                <div class="project-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Ver vídeo</a
+                  >
+                  <a
+                    class="btn btn-outline-soft"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Making-of</a
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section-pad pt-0">
+        <div class="container">
+          <div class="row align-items-end gy-4">
             <div class="col-lg-6">
-              <div class="about-image gsap-reveal">
-                <img
-                  src="https://picsum.photos/600/700?random=10"
-                  alt="Profile"
-                  class="img-fluid rounded-4 shadow-lg"
+              <h2 class="section-title gsap-reveal">Skills</h2>
+              <p class="text-muted gsap-reveal">
+                Barras animadas con ScrollTrigger (y respeto a “reduce motion”).
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="skill-stack gsap-reveal">
+                <div class="skill-row">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="fw-medium">UI / Layout</span
+                    ><span class="text-muted">90%</span>
+                  </div>
+                  <div class="soft-track">
+                    <div class="soft-fill skill-fill" data-width="90"></div>
+                  </div>
+                </div>
+
+                <div class="skill-row">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="fw-medium">Motion / Edición</span
+                    ><span class="text-muted">82%</span>
+                  </div>
+                  <div class="soft-track">
+                    <div class="soft-fill skill-fill" data-width="82"></div>
+                  </div>
+                </div>
+
+                <div class="skill-row">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="fw-medium">Front-end</span
+                    ><span class="text-muted">76%</span>
+                  </div>
+                  <div class="soft-track">
+                    <div class="soft-fill skill-fill" data-width="76"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section-pad pt-0">
+        <div class="container">
+          <div class="contact-card gsap-reveal">
+            <div class="row align-items-center gy-4">
+              <div class="col-lg-7">
+                <h2 class="section-title mb-2">Contacto</h2>
+                <p class="text-muted mb-0">
+                  Si te encaja mi perfil, escríbeme y lo movemos.
+                </p>
+              </div>
+              <div class="col-lg-5">
+                <div
+                  class="d-flex flex-column flex-sm-row gap-2 justify-content-lg-end"
+                >
+                  <a
+                    class="btn btn-primary btn-lg"
+                    href="mailto:tuemail@ejemplo.com"
+                    >Enviar email</a
+                  >
+                  <a
+                    class="btn btn-outline-soft btn-lg"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    >LinkedIn</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="soft-divider my-4"></div>
+
+            <form class="row g-3" aria-label="Formulario de contacto (demo)">
+              <div class="col-md-6">
+                <label class="form-label" for="name">Nombre</label>
+                <input
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Tu nombre"
                 />
               </div>
-            </div>
-            <div class="col-lg-6">
-              <h2 class="display-5 fw-bold mb-4 gsap-reveal">About Me</h2>
-              <p class="lead text-muted mb-4 gsap-reveal">
-                I'm a creative developer passionate about building beautiful,
-                functional, and accessible digital experiences.
-              </p>
-              <p class="text-muted gsap-reveal">
-                With 7+ years of experience spanning front-end development,
-                UI/UX design, and motion graphics, I bring a unique perspective
-                to every project. I believe in the power of animation to enhance
-                user experience without sacrificing performance.
-              </p>
-
-              <!-- Skills with animated progress -->
-              <div class="skills mt-5">
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">React / Next.js</span>
-                    <span class="text-muted">95%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="95"></div>
-                  </div>
-                </div>
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">GSAP / Animation</span>
-                    <span class="text-muted">90%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="90"></div>
-                  </div>
-                </div>
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">Node.js / Express</span>
-                    <span class="text-muted">85%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="85"></div>
-                  </div>
-                </div>
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="tucorreo@..."
+                />
               </div>
-            </div>
+              <div class="col-12">
+                <label class="form-label" for="msg">Mensaje</label>
+                <textarea
+                  class="form-control"
+                  id="msg"
+                  name="msg"
+                  rows="4"
+                  placeholder="Cuéntame qué necesitas..."
+                ></textarea>
+              </div>
+              <div class="col-12 d-flex gap-2 align-items-center">
+                <button class="btn btn-soft" type="button" id="fakeSubmit">
+                  Enviar (demo)
+                </button>
+                <span
+                  class="small text-muted"
+                  id="formHint"
+                  role="status"
+                  aria-live="polite"
+                ></span>
+              </div>
+            </form>
           </div>
         </div>
       </section>
 
-      <!-- Projects Section -->
-      <section id="projects" class="py-5 py-lg-6">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold gsap-reveal">Featured Projects</h2>
-            <p class="lead text-muted gsap-reveal">
-              A selection of my recent work
-            </p>
-          </div>
-
-          <div class="row g-4">
-            <!-- Project Card 1 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=1"
-                    class="card-img-top"
-                    alt="E-commerce Platform"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">E-commerce Platform</h3>
-                  <p class="card-text text-muted small">
-                    Full-stack e-commerce solution with real-time inventory and
-                    Stripe integration.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >React</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Node.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >MongoDB</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 2 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=2"
-                    class="card-img-top"
-                    alt="Dashboard UI"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Analytics Dashboard</h3>
-                  <p class="card-text text-muted small">
-                    Real-time data visualization with interactive charts and
-                    dark mode.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >D3.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >WebSocket</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >GSAP</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=3"
-                    class="card-img-top"
-                    alt="Mobile App"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Fitness Mobile App</h3>
-                  <p class="card-text text-muted small">
-                    Cross-platform fitness tracker with workout plans and
-                    progress analytics.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >React Native</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Firebase</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 4 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=4"
-                    class="card-img-top"
-                    alt="Portfolio Site"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Agency Website</h3>
-                  <p class="card-text text-muted small">
-                    Award-winning agency site with scroll-driven animations and
-                    3D elements.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Three.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >GSAP</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 5 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=5"
-                    class="card-img-top"
-                    alt="SaaS Platform"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">SaaS Platform</h3>
-                  <p class="card-text text-muted small">
-                    Multi-tenant SaaS with role-based access and subscription
-                    management.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Next.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Prisma</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 6 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=6"
-                    class="card-img-top"
-                    alt="AI Tool"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">AI Content Generator</h3>
-                  <p class="card-text text-muted small">
-                    GPT-powered content creation tool with custom fine-tuning
-                    options.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >OpenAI</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Python</span
-                    >
-                  </div>
-                </div>
-              </article>
+      <!-- MODAL LIGHTBOX -->
+      <div
+        class="modal fade"
+        id="lightboxModal"
+        tabindex="-1"
+        aria-hidden="true"
+        aria-label="Visor de imagen"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content lightbox">
+            <button
+              type="button"
+              class="btn-close ms-auto m-3"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+            <div class="px-3 pb-3">
+              <img
+                id="lightboxImg"
+                class="img-fluid rounded-4"
+                alt="Imagen ampliada"
+              />
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-5 py-lg-6 bg-dark">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-              <h2 class="display-5 fw-bold mb-4 gsap-reveal">
-                Let's Work Together
-              </h2>
-              <p class="lead text-muted mb-5 gsap-reveal">
-                Have a project in mind? I'd love to hear about it. Let's create
-                something amazing.
-              </p>
-              <div class="gsap-reveal">
-                <a
-                  href="mailto:hello@example.com"
-                  class="btn btn-primary btn-lg mb-4"
-                >
-                  Start a Conversation
-                </a>
-              </div>
-              <div
-                class="social-links gsap-reveal d-flex justify-content-center gap-4"
-              >
-                <a href="#" class="text-muted fs-4" aria-label="GitHub">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    />
-                  </svg>
-                </a>
-                <a href="#" class="text-muted fs-4" aria-label="LinkedIn">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                    />
-                  </svg>
-                </a>
-                <a href="#" class="text-muted fs-4" aria-label="Twitter">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
+      <!-- Toast (micro feedback) -->
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div
+          id="liveToast"
+          class="toast"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div class="toast-body">Acción realizada ✨</div>
         </div>
-      </section>
+      </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="py-4 text-center text-muted small">
-      <div class="container">
-        <p class="mb-0">
-          &copy; 2025 John Designer. Built with Bootstrap 5 + GSAP.
+    <footer class="footer">
+      <div
+        class="container d-flex flex-wrap justify-content-between align-items-center gap-2"
+      >
+        <p class="mb-0 small text-muted">
+          © <span id="year"></span> TuNombre · Portfolio
         </p>
+        <a class="small link-muted" href="#hero">Volver arriba</a>
       </div>
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- GSAP + Plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollToPlugin.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
   </body>
 </html>
