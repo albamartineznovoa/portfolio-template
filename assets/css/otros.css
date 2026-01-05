@@ -18,6 +18,9 @@
   --r-lg: 18px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ✅ altura navbar para cálculos responsive */
+  --nav-h: 74px;
 }
 
 html,
@@ -28,7 +31,7 @@ body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--ink);
-  padding-top: 74px;
+  padding-top: var(--nav-h);
 }
 
 /* Emergency visibility fixes:
@@ -219,16 +222,33 @@ html.js .gsap-reveal {
   font-weight: 300;
 }
 
-/* HERO — landing responsive */
-.hero {
-  padding: clamp(2.6rem, 6vw, 4.2rem) 0 clamp(2.2rem, 5vw, 3.6rem);
+/* =========================
+   HERO — FIX MOBILE SPACING
+   ========================= */
 
-  /* ✅ (1) Header centrado + responsive: ocupar pantalla */
-  min-height: calc(100vh - 74px);
+/* ✅ El problema del “mucho espacio” en móvil suele venir de 100vh + barras del navegador.
+   Solución: usar svh/dvh cuando exista y evitar que el padding sume altura extra fea. */
+.hero {
+  /* padding más controlado */
+  padding: clamp(2.2rem, 5vw, 3.6rem) 0 clamp(2rem, 4.5vw, 3.2rem);
+
+  /* fallback */
+  min-height: calc(100vh - var(--nav-h));
+
+  /* layout para centrar sin hacks */
+  display: flex;
+  align-items: stretch;
 }
-@media (max-width: 991.98px) {
+
+/* ✅ Unidades dinámicas (mejor en iOS/Android modernos) */
+@supports (height: 100svh) {
   .hero {
-    min-height: calc(100vh - 68px);
+    min-height: calc(100svh - var(--nav-h));
+  }
+}
+@supports (height: 100dvh) {
+  .hero {
+    min-height: calc(100dvh - var(--nav-h));
   }
 }
 
@@ -238,16 +258,15 @@ html.js .gsap-reveal {
   margin: 0 auto;
   padding: 0 10px;
 
-  /* ensure hero content is vertically centered inside its container on large screens */
+  /* ✅ centrado vertical real sin “min-height: inherit” (que en móvil te jugaba malas pasadas) */
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  /* ✅ (1) usar el alto del hero para que el indicador se coloque bien */
-  min-height: inherit;
 }
 
+/* Ajustes tipográficos */
 .kicker {
   color: var(--muted);
   font-weight: 600;
@@ -306,6 +325,7 @@ html.js .gsap-reveal {
     opacity: 0;
   }
 }
+
 .hero-subtitle {
   color: var(--muted);
   font-size: clamp(1rem, 1.4vw, 1.12rem);
@@ -330,8 +350,8 @@ html.js .gsap-reveal {
 
 /* Scroll indicator (mouse) */
 .scroll-indicator {
-  /* ✅ (1) un poco más abajo, adaptado a pantalla */
-  margin-top: clamp(3.2rem, 7vh, 6rem);
+  /* ✅ desktop: sí baja; ✅ móvil: NO debe empujar y crear huecos raros */
+  margin-top: clamp(2.2rem, 5vh, 4.2rem);
 
   display: flex;
   flex-direction: column;
@@ -363,12 +383,14 @@ html.js .gsap-reveal {
   letter-spacing: 0.02em;
   font-size: 0.9rem;
 }
+
+/* ✅ keyframes limpios + sin saltos raros */
 @keyframes wheelMove {
   0% {
     transform: translateY(0);
     opacity: 1;
   }
-  60% {
+  55% {
     transform: translateY(12px);
     opacity: 0.25;
   }
@@ -378,7 +400,49 @@ html.js .gsap-reveal {
   }
 }
 
-/* Projects grid */
+/* ✅ Ajuste fino HERO en móvil */
+@media (max-width: 575.98px) {
+  .hero {
+    /* menos padding para que no “sobre” altura */
+    padding: 2rem 0 2.2rem;
+
+    /* si el contenido es poco, centrado; si es mucho, que respire sin romper */
+    min-height: calc(100svh - var(--nav-h));
+  }
+
+  .hero-title {
+    line-height: 1.08;
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .hero-subtitle {
+    margin-top: 0.9rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .scroll-indicator {
+    margin-top: 1.6rem;
+    gap: 8px;
+  }
+
+  .mouse {
+    width: 26px;
+    height: 40px;
+    padding-top: 7px;
+  }
+
+  .scroll-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================
+   Projects grid
+   ========================= */
 .project-grid {
   margin-top: 1.6rem;
   display: grid;
@@ -823,7 +887,9 @@ strong,
   font-weight: 500;
 }
 
-/* Modal minimal */
+/* =========================
+   MODAL — responsive mejorado
+   ========================= */
 .modal-min {
   border-radius: var(--r-xl);
   border: 1px solid var(--stroke);
@@ -866,15 +932,32 @@ strong,
   align-items: center; /* vertical centering */
   min-height: calc(100% - 1rem);
 }
+
 .modal-content,
 .modal-min {
   background: #ffffff; /* ensure modal surfaces are pure white */
   border: none;
+
+  /* ✅ mejor altura en móvil/desktop */
   max-height: 92vh;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
 }
+@supports (height: 100svh) {
+  .modal-content,
+  .modal-min {
+    max-height: 92svh;
+  }
+}
+@supports (height: 100dvh) {
+  .modal-content,
+  .modal-min {
+    max-height: 92dvh;
+  }
+}
+
 .modal-body {
   padding: 14px;
   display: flex;
@@ -890,6 +973,7 @@ strong,
 .modal-dialog.modal-dialog-centered {
   margin: 0 auto;
 }
+
 .pm-media {
   border-radius: var(--r-xl);
   overflow: hidden;
@@ -900,6 +984,7 @@ strong,
   flex: 1 1 60%;
   min-width: 0; /* allow flex children to shrink properly */
 }
+
 .pm-info {
   border: none;
   border-radius: var(--r-xl);
@@ -908,7 +993,9 @@ strong,
   flex: 0 0 360px;
   max-width: 420px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 .pm-desc {
   color: var(--muted);
   margin: 0 0 10px;
@@ -973,7 +1060,7 @@ strong,
   padding: 0;
   cursor: pointer;
   transition: transform 0.2s var(--ease);
-  height: 200px; /* fixed tile height so grid images align */
+  height: 200px; /* desktop/tablet */
   display: block;
 }
 .pm-tile img {
@@ -987,6 +1074,17 @@ strong,
   transform: translateY(-2px);
 }
 
+/* ✅ En móvil: tiles con aspect-ratio para que no “se coman” la modal */
+@media (max-width: 575.98px) {
+  .pm-tile {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .pm-tile img {
+    height: 100%;
+  }
+}
+
 /* Ensure carousel items and images inside the modal fill the pm-media area */
 .pm-media .carousel,
 .pm-media .carousel-inner,
@@ -997,13 +1095,13 @@ strong,
   width: 100%;
   height: 100%;
 
-  /* ✅ (3) no recortar + mantener formato */
+  /* ✅ no recortar + mantener formato */
   object-fit: contain;
 
   display: block;
   background: #fff;
 
-  /* ✅ (3) mismo radio */
+  /* ✅ mismo radio */
   border-radius: var(--r-xl);
 }
 
@@ -1024,7 +1122,7 @@ strong,
   width: 100%;
   height: 100%;
 
-  /* ✅ (4) vídeo vertical completo */
+  /* ✅ vídeo completo */
   object-fit: contain;
 
   background: #000;
@@ -1035,7 +1133,7 @@ strong,
   border-radius: var(--r-lg);
   overflow: hidden;
 
-  /* ✅ (4) letterbox negro limpio */
+  /* ✅ letterbox negro limpio */
   background: #000;
 }
 .pm-video iframe,
@@ -1082,7 +1180,7 @@ strong,
   }
 }
 
-/* ✅ (3) Lightbox: proporción perfecta + radio consistente */
+/* ✅ Lightbox: proporción perfecta + radio consistente */
 .lightbox-img,
 #lightboxImg {
   width: 100%;
@@ -1128,14 +1226,16 @@ img {
   }
 }
 
-/* Local overrides: adjust hero centering and scroll indicator placement */
-/* (ya aplicado arriba con clamp y min-height, no se repite aquí) */
-
 /* Responsive */
 @media (max-width: 991.98px) {
-  body {
-    padding-top: 68px;
+  :root {
+    --nav-h: 68px;
   }
+
+  body {
+    padding-top: var(--nav-h);
+  }
+
   .project-grid {
     grid-template-columns: 1fr;
   }
@@ -1148,28 +1248,51 @@ img {
   .console-grid {
     grid-template-columns: 1fr;
   }
+
   .modal-body {
     flex-direction: column;
     padding: 12px;
+    min-height: auto; /* ✅ evita alturas raras al apilar */
   }
   .pm-grid {
     grid-template-columns: 1fr;
   }
   .pm-media {
-    min-height: 26vh; /* smaller on narrow screens */
+    min-height: 28vh; /* ✅ un poco más generoso en móvil */
     flex: 1 1 auto;
     width: 100%;
   }
   .pm-info {
     flex: 0 0 auto;
-    max-height: 40vh;
+    max-height: 42vh;
     width: 100%;
     margin-top: 12px;
   }
 }
+
+/* ✅ Modal aún más cómoda en móvil pequeño */
 @media (max-width: 575.98px) {
   .section {
     padding: 4.4rem 0;
+  }
+
+  .modal-dialog.modal-xl {
+    width: calc(100% - 20px);
+  }
+
+  .modal-head {
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+  .mh-link {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 6px;
+  }
+
+  .pm-info {
+    max-height: none; /* ✅ que no quede “aplastado” */
+    overflow: visible;
   }
 }
 
