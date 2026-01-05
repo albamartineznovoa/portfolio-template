@@ -31,13 +31,20 @@ body {
   padding-top: 74px;
 }
 
-/* Emergency visibility fixes: restore header and revealable elements if JS failed */
+/* Emergency visibility fixes:
+   - Sin JS: que se vea todo normal
+   - Con JS: GSAP controla los reveals */
 .navbar {
   z-index: 1050; /* ensure navbar sits above page content */
 }
-.gsap-reveal {
+html:not(.js) .gsap-reveal {
   opacity: 1 !important;
   transform: none !important;
+  visibility: visible !important;
+}
+html.js .gsap-reveal {
+  opacity: 0 !important;
+  transform: translateY(14px) !important;
   visibility: visible !important;
 }
 
@@ -215,18 +222,32 @@ body {
 /* HERO — landing responsive */
 .hero {
   padding: clamp(2.6rem, 6vw, 4.2rem) 0 clamp(2.2rem, 5vw, 3.6rem);
+
+  /* ✅ (1) Header centrado + responsive: ocupar pantalla */
+  min-height: calc(100vh - 74px);
 }
+@media (max-width: 991.98px) {
+  .hero {
+    min-height: calc(100vh - 68px);
+  }
+}
+
 .hero-center {
   text-align: center;
   max-width: 86ch;
   margin: 0 auto;
   padding: 0 10px;
+
   /* ensure hero content is vertically centered inside its container on large screens */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* ✅ (1) usar el alto del hero para que el indicador se coloque bien */
+  min-height: inherit;
 }
+
 .kicker {
   color: var(--muted);
   font-weight: 600;
@@ -309,7 +330,9 @@ body {
 
 /* Scroll indicator (mouse) */
 .scroll-indicator {
-  margin-top: 2.6rem;
+  /* ✅ (1) un poco más abajo, adaptado a pantalla */
+  margin-top: clamp(3.2rem, 7vh, 6rem);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -973,8 +996,15 @@ strong,
 .pm-media .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  /* ✅ (3) no recortar + mantener formato */
+  object-fit: contain;
+
   display: block;
+  background: #fff;
+
+  /* ✅ (3) mismo radio */
+  border-radius: var(--r-xl);
 }
 
 /* Video / iframe sizing inside modal */
@@ -993,13 +1023,20 @@ strong,
 .pm-video video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  /* ✅ (4) vídeo vertical completo */
+  object-fit: contain;
+
+  background: #000;
 }
 
 /* Round the video frame and ensure the player is clipped to the radius */
 .pm-video {
   border-radius: var(--r-lg);
   overflow: hidden;
+
+  /* ✅ (4) letterbox negro limpio */
+  background: #000;
 }
 .pm-video iframe,
 .pm-video video {
@@ -1045,6 +1082,17 @@ strong,
   }
 }
 
+/* ✅ (3) Lightbox: proporción perfecta + radio consistente */
+.lightbox-img,
+#lightboxImg {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain !important;
+  border-radius: var(--r-xl) !important;
+  background: #fff;
+  display: block;
+}
+
 /* Rounded images everywhere */
 img {
   border-radius: var(--r-lg);
@@ -1081,18 +1129,7 @@ img {
 }
 
 /* Local overrides: adjust hero centering and scroll indicator placement */
-.scroll-indicator {
-  /* slightly lower the mouse indicator so it doesn't touch hero actions */
-  margin-top: 2.6rem;
-}
-
-.hero-center {
-  /* ensure hero content is vertically centered inside its container on large screens */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/* (ya aplicado arriba con clamp y min-height, no se repite aquí) */
 
 /* Responsive */
 @media (max-width: 991.98px) {

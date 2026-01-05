@@ -42,7 +42,7 @@
         "<strong>Plus:</strong> catálogo, folleto díptico, cartel de fachada, entradas y piezas gráficas",
       ],
       tags: ["Identidad", "Grid", "Editorial"],
-      impact: 70,
+      impact: 86,
       media: {
         type: "grid",
         images: [
@@ -57,7 +57,7 @@
       kicker: "Proyecto 03 · Revista",
       title: "Olvana",
       link: "#",
-      desc: "Olvana es royecto editorial desarrollado como una revista centrada en el bienestar y el autocuidado, con una estética moderna y minimalista. La identidad visual se aplica tanto al diseño editorial como a la creación de un spot audiovisual para su promoción. La composición, el ritmo y las transiciones refuerzan una narrativa visual coherente.",
+      desc: "Olvana es proyecto editorial desarrollado como una revista centrada en el bienestar y el autocuidado, con una estética moderna y minimalista. La identidad visual se aplica tanto al diseño editorial como a la creación de un spot audiovisual para su promoción. La composición, el ritmo y las transiciones refuerzan una narrativa visual coherente.",
       list: [
         "<strong>Rol:</strong> diseño editorial y motion graphics",
         "<strong>Objetivo:</strong> fluidez y coherencia visual",
@@ -71,10 +71,10 @@
         type: "video",
         src: "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/MARTINEZ_ALBA_SPOT.MP4",
         images: [
-          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3675.heic",
-          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3679.HEIC",
-          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3659.HEIC",
-          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3689.HEIC",
+          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3675.jpg",
+          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3689.jpg",
+          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3659.jpg",
+          "https://ik.imagekit.io/3meimekutr/PORTFOLIO/Olvana/IMG_3679.jpg",
         ],
       },
     },
